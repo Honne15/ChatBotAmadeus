@@ -59,19 +59,19 @@ const flowRegistro = addKeyword(['sí', 'si', 'registrar', 'horas extras'])
        
         if (userResponse.status === 200 && userResponse.data) {
           console.log('✅ Usuario verificado correctamente:', userResponse.data);
-          const userName = userResponse.data.name || "usuario";
+          const name = userResponse.data.name || "usuario";
           const userId = userResponse.data.userId;
          
           // Guardamos los datos del usuario en el estado
           await state.update({
             userId,
-            userName,
+            name,
             code: codigoEmpresarial
           });
          
           await flowDynamic([
-            `✅ Inicio de sesión exitoso. Bienvenido ${userName}!`,
-            "Ahora ingresa la fecha en que trabajaste las horas extras (Formato: YYYY-MM-DD)"
+            `✅ Inicio de sesión exitoso. Bienvenido ${name}!`,
+            "Ahora ingresa la fecha en que trabajaste las horas extras"
           ]);
         } else {
           console.log('❌ No se encontró el usuario con el código proporcionado');
@@ -115,7 +115,7 @@ const flowRegistro = addKeyword(['sí', 'si', 'registrar', 'horas extras'])
       });
       console.log("Estado actualizado con fecha:", state.getMyState());
      
-      await flowDynamic("Ingresa tu hora de inicio. (Formato: HH:MM)");
+      await flowDynamic("Ingresa tu hora de inicio.");
     }
   )
  
@@ -140,7 +140,7 @@ const flowRegistro = addKeyword(['sí', 'si', 'registrar', 'horas extras'])
       });
       console.log("Estado actualizado con hora inicio:", state.getMyState());
      
-      await flowDynamic("Ahora, ingresa tu hora de salida. (Formato: HH:MM)");
+      await flowDynamic("Ahora, ingresa tu hora de salida.");
     }
   )
  
@@ -161,7 +161,7 @@ const flowRegistro = addKeyword(['sí', 'si', 'registrar', 'horas extras'])
       const currentState = state.getMyState() || {};
       console.log("Estado actual antes de enviar:", currentState);
      
-      const { userId, userName, date, startTime, code } = currentState;
+      const { userId, name, date, startTime, code } = currentState;
      
       if (!userId || !date || !startTime) {
         console.error("❌ Faltan datos necesarios:", currentState);
@@ -175,7 +175,7 @@ const flowRegistro = addKeyword(['sí', 'si', 'registrar', 'horas extras'])
         console.log("🔄 Enviando datos al backend...");
         const extraHourData = {
           userId,
-          name: userName,
+          name: name,
           code,
           date,
           startTime,
@@ -183,7 +183,7 @@ const flowRegistro = addKeyword(['sí', 'si', 'registrar', 'horas extras'])
           status: "Pendiente",
           created: timestamp,
           updated: timestamp,
-          extraHoursTypeId: 1
+          extraHoursTypeId: 1,
         };
        
         console.log("Datos a enviar:", extraHourData);
