@@ -183,7 +183,6 @@ const flowRegistro = addKeyword(['sí', 'si', 'registrar', 'horas extras'])
           status: "Pendiente",
           created: timestamp,
           updated: timestamp,
-          extraHoursTypeId: 1,
         };
        
         console.log("Datos a enviar:", extraHourData);
