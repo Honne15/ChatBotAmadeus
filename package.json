@@ -10,14 +10,16 @@
     },
     "keywords": [],
     "dependencies": {
-        "@bot-whatsapp/bot": "latest",
+        "@bot-whatsapp/bot": "^0.1.38",
         "@bot-whatsapp/cli": "latest",
         "@bot-whatsapp/database": "latest",
-        "@bot-whatsapp/portal": "latest",
+        "@bot-whatsapp/portal": "^0.1.38",
         "@bot-whatsapp/provider": "latest",
+        "@bot-whatsapp/provider-web-whatsapp": "^0.1.1-alpha.0",
         "axios": "^1.8.4",
         "base-wweb-memory": "file:",
-        "whatsapp-web.js": "1.27.0"
+        "puppeteer-core": "^24.11.2",
+        "whatsapp-web.js": "^1.31.0"
     },
     "devDependencies": {
         "eslint": "^8.52.0",
